@@ -15,11 +15,8 @@ jobs:
 
     - name: Install dependencies
       run: | 
-        # обновление pip
         python -m pip install --upgrade pip 
-        # установка flake8 и его плагинов
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
-        # установка зависимостей
         pip install -r requirements.txt 
 
     - name: Test with flake8 and django tests
@@ -69,7 +66,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           # Выполняет pull образа с DockerHub
-          sudo docker pull akadocker90/infra
+          sudo docker pull akadocker90/infra:latest
           #остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -p 5000:5000 akadocker90/infra
